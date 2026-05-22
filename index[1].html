@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Glassmorphism Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+
+    position:relative;
+}
+
+/* Background */
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(10px);
+    animation:float 5s infinite alternate;
+}
+
+.circle1{
+    width:300px;
+    height:300px;
+    background:#ff4d6d;
+    top:-100px;
+    left:-100px;
+}
+
+.circle2{
+    width:250px;
+    height:250px;
+    background:#00d2ff;
+    bottom:-80px;
+    right:-80px;
+}
+
+.circle3{
+    width:180px;
+    height:180px;
+    background:#7c3aed;
+    top:60%;
+    left:10%;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(30px);
+    }
+}
+
+/* Container */
+
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* Glass Card */
+
+.glass-box{
+
+    width:400px;
+    padding:40px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,0.12);
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+
+    color:white;
+}
+
+.glass-box h1{
+
+    text-align:center;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+
+    text-align:center;
+    margin-bottom:35px;
+    color:#d1d5db;
+}
+
+/* Inputs */
+
+.input-box{
+    position:relative;
+    margin-bottom:30px;
+}
+
+.input-box input{
+
+    width:100%;
+    padding:18px 15px;
+
+    border:none;
+    outline:none;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,0.12);
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    color:white;
+    font-size:16px;
+}
+
+.input-box input:focus{
+
+    border:1px solid #00d2ff;
+
+    box-shadow:0 0 15px rgba(0,210,255,0.4);
+}
+
+.input-box label{
+
+    position:absolute;
+
+    top:18px;
+    left:15px;
+
+    color:#d1d5db;
+
+    transition:0.3s;
+
+    pointer-events:none;
+}
+
+.input-box input:focus + label,
+.input-box input:not(:placeholder-shown)+label{
+
+    top:-10px;
+    left:12px;
+
+    font-size:12px;
+
+    background:#0f172a;
+
+    padding:0 6px;
+
+    border-radius:5px;
+
+    color:#00d2ff;
+}
+
+/* Error */
+
+.error{
+
+    color:#ff6b6b;
+    font-size:13px;
+
+    margin-top:6px;
+    display:block;
+}
+
+/* Strength */
+
+.strength-box{
+
+    width:100%;
+    height:8px;
+
+    background:rgba(255,255,255,0.2);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:10px;
+}
+
+.strength-bar{
+
+    width:0%;
+    height:100%;
+
+    border-radius:20px;
+
+    transition:0.4s;
+}
+
+.strength-text{
+
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+/* Options */
+
+.options{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.options a{
+
+    color:#00d2ff;
+    text-decoration:none;
+}
+
+/* Button */
+
+.btn{
+
+    width:100%;
+    padding:16px;
+
+    border:none;
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#00d2ff,#3a7bd5);
+
+    color:white;
+
+    font-size:17px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 20px rgba(0,210,255,0.4);
+}
+
+/* Responsive */
+
+@media(max-width:500px){
+
+    .glass-box{
+
+        width:100%;
+        padding:30px 22px;
+    }
+
+    .glass-box h1{
+        font-size:30px;
+    }
+
+    .options{
+
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+
+<div class="container">
+
+<div class="glass-box">
+
+<h1>Welcome Back</h1>
+
+<p class="subtitle">
+Glassmorphism Login Form
+</p>
+
+<form id="loginForm">
+
+<div class="input-box">
+
+<input type="text" id="username" placeholder=" ">
+
+<label>Username / Email</label>
+
+<small class="error" id="userError"></small>
+
+</div>
+
+<div class="input-box">
+
+<input type="password" id="password" placeholder=" ">
+
+<label>Password</label>
+
+<small class="error" id="passError"></small>
+
+</div>
+
+<div class="strength-box">
+
+<div class="strength-bar" id="strengthBar"></div>
+
+</div>
+
+<p class="strength-text" id="strengthText"></p>
+
+<div class="options">
+
+<label>
+<input type="checkbox">
+Remember me
+</label>
+
+<a href="#">
+Forgot Password?
+</a>
+
+</div>
+
+<button type="submit" class="btn">
+Login
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+
+const form=document.getElementById("loginForm");
+
+const username=document.getElementById("username");
+
+const password=document.getElementById("password");
+
+const userError=document.getElementById("userError");
+
+const passError=document.getElementById("passError");
+
+const strengthBar=document.getElementById("strengthBar");
+
+const strengthText=document.getElementById("strengthText");
+
+/* Email Check */
+
+function validateEmail(email){
+
+const pattern=/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+return pattern.test(email);
+}
+
+/* Username */
+
+username.addEventListener("input",()=>{
+
+if(username.value.trim()===""){
+
+userError.innerText="Username cannot be empty";
+}
+
+else{
+
+userError.innerText="";
+}
+
+});
+
+/* Password Strength */
+
+password.addEventListener("input",()=>{
+
+const pass=password.value;
+
+let strength=0;
+
+if(pass.length>=6){
+strength++;
+}
+
+if(/[A-Z]/.test(pass)){
+strength++;
+}
+
+if(/[0-9]/.test(pass)){
+strength++;
+}
+
+if(/[@$!%*?&]/.test(pass)){
+strength++;
+}
+
+switch(strength){
+
+case 1:
+
+strengthBar.style.width="25%";
+strengthBar.style.background="red";
+
+strengthText.innerText="Weak Password";
+
+break;
+
+case 2:
+
+strengthBar.style.width="50%";
+strengthBar.style.background="orange";
+
+strengthText.innerText="Medium Password";
+
+break;
+
+case 3:
+
+strengthBar.style.width="75%";
+strengthBar.style.background="yellow";
+
+strengthText.innerText="Good Password";
+
+break;
+
+case 4:
+
+strengthBar.style.width="100%";
+strengthBar.style.background="lime";
+
+strengthText.innerText="Strong Password";
+
+break;
+
+default:
+
+strengthBar.style.width="0%";
+
+strengthText.innerText="";
+}
+
+});
+
+/* Submit */
+
+form.addEventListener("submit",(e)=>{
+
+e.preventDefault();
+
+if(username.value==="" || password.value===""){
+
+alert("Please fill all fields");
+
+}
+
+else{
+
+alert("Login Successful 🚀");
+
+form.reset();
+
+strengthBar.style.width="0%";
+
+strengthText.innerText="";
+}
+
+});
+
+</script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
